@@ -4,7 +4,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.16"
+      version = "5.82.2"
     }
   }
 }
@@ -77,6 +77,7 @@ resource "aws_iam_role_policy_attachment" "s3_policy_attachment" {
 resource "aws_sagemaker_notebook_instance" "notebook" {
   name                 = var.notebook_instance_name
   instance_type        = "ml.t3.medium"
+  platform_identifier = "notebook-al2-v3"
   role_arn             = aws_iam_role.sagemaker_role.arn
   lifecycle_config_name = null
   tags = {
